@@ -1,8 +1,23 @@
 @model IEnumerable<library.Models.User>
-@foreach (var user in Model)
-{
-    @user.Id;
-    @user.Name;
-    @user.Lastname;
-    @user.DNI;
-}
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-striped">
+            <thead>
+            <th>    </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            </thead>
+            <tbody>
+            @foreach (var user in Model)
+            {<tr>
+                <td>@user.Id</td>
+                <td>@user.Name</td>
+                <td>@user.Lastname</td>
+                <td>@user.DNI</td>
+            </tr>}
+            </tbody>
+        </table>
+    </div>
+</div>
