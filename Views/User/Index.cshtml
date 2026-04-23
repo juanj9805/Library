@@ -1,0 +1,8 @@
+@model IEnumerable<library.Models.User>
+@foreach (var user in Model)
+{
+    @user.Id;
+    @user.Name;
+    @user.Lastname;
+    @user.DNI;
+}
