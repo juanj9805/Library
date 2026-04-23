@@ -1,0 +1,66 @@
+@model IEnumerable<library.Models.Book>
+@{
+    ViewData["Title"] = "Libros";
+}
+
+@section TopbarActions {
+    <a href="/Book/Create" class="btn btn-primary btn-sm">+ Nuevo Libro</a>
+}
+
+<div class="card shadow-sm">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span class="fw-semibold">Catálogo de Libros</span>
+        <span class="text-muted small">@Model.Count() registros</span>
+    </div>
+    <div class="card-body p-0">
+        @if (!Model.Any())
+        {
+            <div class="text-center py-5 text-muted">
+                <p class="mb-1">No hay libros registrados.</p>
+                <a href="/Book/Create" class="btn btn-outline-primary btn-sm mt-2">Agregar primero</a>
+            </div>
+        }
+        else
+        {
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Estado</th>
+                        <th class="text-end">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var book in Model)
+                    {
+                        <tr>
+                            <td class="text-muted">@book.Id</td>
+                            <td><strong>@book.Title</strong></td>
+                            <td class="text-muted">@book.Author</td>
+                            <td>
+                                @if (book.Status)
+                                {
+                                    <span class="badge bg-success">Disponible</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Prestado</span>
+                                }
+                            </td>
+                            <td class="text-end">
+                                <a href="/Book/Edit/@book.Id" class="btn btn-outline-secondary btn-sm">Editar</a>
+                                <form method="post" action="/Book/Delete/@book.Id" class="d-inline"
+                                      onsubmit="return confirm('¿Eliminar «@book.Title»?')">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

@@ -1,0 +1,48 @@
+@model library.Models.User
+@{
+    ViewData["Title"] = "Editar Usuario";
+}
+
+@section TopbarActions {
+    <a href="/User" class="btn btn-outline-secondary btn-sm">← Volver</a>
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span class="fw-semibold">Editar Usuario</span>
+                <span class="text-muted small">#@Model.Id</span>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit" asp-controller="User" method="post">
+                    @Html.AntiForgeryToken()
+                    <input asp-for="Id" type="hidden" />
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">Nombre</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Lastname" class="form-label">Apellido</label>
+                        <input asp-for="Lastname" class="form-control" />
+                        <span asp-validation-for="Lastname" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="DNI" class="form-label">DNI</label>
+                        <input asp-for="DNI" class="form-control" />
+                        <span asp-validation-for="DNI" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        <a href="/User" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

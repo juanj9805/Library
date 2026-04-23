@@ -1,50 +1,111 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - library</title>
-    <script type="importmap"></script>
+    <title>@ViewData["Title"] - Librería</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/library.styles.css" asp-append-version="true" />
+    <style>
+        body { min-height: 100vh; background-color: #f8f9fa; }
+        .sidebar {
+            width: 240px;
+            min-height: 100vh;
+            background-color: #212529;
+            position: fixed;
+            top: 0; left: 0;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+        .sidebar-brand {
+            padding: 1.5rem 1.25rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .sidebar-brand h5 {
+            color: #fff;
+            font-weight: 700;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        .sidebar-brand small {
+            color: #adb5bd;
+            font-size: 0.75rem;
+        }
+        .sidebar .nav-link {
+            color: #adb5bd;
+            padding: 0.65rem 1.25rem;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+        }
+        .sidebar .nav-link:hover { color: #fff; background: rgba(255,255,255,0.07); }
+        .sidebar .nav-link.active { color: #fff; background: rgba(255,255,255,0.12); border-left: 3px solid #0d6efd; }
+        .sidebar .nav-section {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #6c757d;
+            padding: 1rem 1.25rem 0.4rem;
+        }
+        .main-content {
+            margin-left: 240px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .topbar {
+            background: #fff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .topbar h4 { margin: 0; font-size: 1.05rem; font-weight: 600; color: #212529; }
+        .page-body { padding: 2rem; flex: 1; }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">library</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <h5>📚 Bibliotheca</h5>
+            <small>Sistema de Administración</small>
+        </div>
+        <nav class="mt-2">
+            <div class="nav-section">Módulos</div>
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "User" ? "active" : "")"
+               href="/User">
+                👤 Usuarios
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Book" ? "active" : "")"
+               href="/Book">
+                📖 Libros
+            </a>
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Loan" ? "active" : "")"
+               href="/Loan">
+                📋 Préstamos
+            </a>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    </aside>
+
+    <div class="main-content">
+        <div class="topbar">
+            <h4>@ViewData["Title"]</h4>
+            <div>
+                @await RenderSectionAsync("TopbarActions", required: false)
+            </div>
+        </div>
+        <div class="page-body">
             @RenderBody()
-        </main>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - library - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
