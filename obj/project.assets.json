@@ -1979,19 +1979,19 @@
     ]
   },
   "packageFolders": {
-    "/home/cohorte6/.nuget/packages/": {}
+    "C:\\Users\\JUAN JOSE\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/cohorte6/Escritorio/C#/Library/library.csproj",
+      "projectUniqueName": "C:\\Users\\JUAN JOSE\\Desktop\\Library\\library.csproj",
       "projectName": "library",
-      "projectPath": "/home/cohorte6/Escritorio/C#/Library/library.csproj",
-      "packagesPath": "/home/cohorte6/.nuget/packages/",
-      "outputPath": "/home/cohorte6/Escritorio/C#/Library/obj/",
+      "projectPath": "C:\\Users\\JUAN JOSE\\Desktop\\Library\\library.csproj",
+      "packagesPath": "C:\\Users\\JUAN JOSE\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JUAN JOSE\\Desktop\\Library\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/cohorte6/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\JUAN JOSE\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -2055,7 +2055,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/cohorte6/.dotnet/sdk/10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
