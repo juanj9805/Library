@@ -69,4 +69,12 @@ public class UserController : Controller
         TempData["status"] = "danger";
         return RedirectToAction("Index");
     }
+
+    [HttpPost]
+    public IActionResult Delete(int id)
+    {
+        _service.DeleteUser(id);
+        return RedirectToAction("Index");
+    }
+
 }

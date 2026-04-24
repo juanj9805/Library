@@ -77,25 +77,30 @@ public class UserService
 
     public ServiceResponse<User> UpdateUser(User user)
     {
-        User exists = _context.users.FirstOrDefault(u => u.Id == user.Id);
+        var exists = _context.users.FirstOrDefault(u => u.Id == user.Id);
         if (exists != null)
         {
-            _context.Update(user);
-            var result = _context.SaveChanges();
-            if (result > 0)
+            try
             {
+                exists.DNI = user.DNI;
+                exists.Name = user.Name;
+                exists.Lastname = user.Lastname;
+                _context.SaveChanges();
+
                 return new ServiceResponse<User>()
                 {
                     Success = true,
-                    Message = "Usuario modificado correctamente"
+                    Message = "User modified correctly"
                 };
             }
-
-            return new ServiceResponse<User>()
+            catch (Exception e)
             {
-                Success = false,
-                Message = "No fue posible modificar"
-            };
+                return new ServiceResponse<User>()
+                {
+                    Success = false,
+                    Message = $"User can not be modified {e}"
+                };
+            }
         }
 
         return new ServiceResponse<User>()
@@ -117,21 +122,21 @@ public class UserService
                 return new ServiceResponse<User>()
                 {
                     Success = true,
-                    Message = "elimanado correctamente"
+                    Message = "User deleted"
                 };
             }
 
             return new ServiceResponse<User>()
             {
                 Success = false,
-                Message = "no se elimino"
+                Message = "was not possible delete the user"
             };
         }
 
         return new ServiceResponse<User>()
         {
             Success = false,
-            Message = " usuario no encontro"
+            Message = "user not found"
         };
     }
 }
