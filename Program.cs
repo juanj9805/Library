@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MysqlDbcontext>(options => options.UseMySql(builder.Configuration.GetConnectionString("mysqlConntection"),
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("mysqlConntection"))));
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<BookService>();
 var app = builder.Build();
   
 // Configure the HTTP request pipeline.

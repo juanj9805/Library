@@ -3,6 +3,13 @@
     ViewData["Title"] = "Usuarios";
 }
 
+@* <span class="bg-@(status != "success" ? "danger" : "success")">@message</span> *@
+@if(TempData["message"] != null){
+<div class="alert alert-@(TempData["status"] == "success" ? "success" : "danger") alert-dismissible fade show" role="alert">
+    @TempData["message"]
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+}
 @section TopbarActions {
     <a href="/User/Create" class="btn btn-primary btn-sm">+ Nuevo Usuario</a>
 }
@@ -41,7 +48,7 @@
                             <td>@user.Lastname</td>
                             <td><code>@user.DNI</code></td>
                             <td class="text-end">
-                                <a href="/User/Edit/@user.Id" class="btn btn-outline-secondary btn-sm">Editar</a>
+                                <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-outline-secondary btn-sm">Editar</a>
                                 <form method="post" action="/User/Delete/@user.Id" class="d-inline"
                                       onsubmit="return confirm('¿Eliminar a @user.Name @user.Lastname?')">
                                     @Html.AntiForgeryToken()

@@ -1,6 +1,7 @@
 using library.Data;
 using library.Models;
 using library.Responses;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace library.Services;
@@ -24,25 +25,53 @@ public class UserService
         };
     }
 
+    public ServiceResponse<User> CreateUser()
+    {
+        return new ServiceResponse<User>();
+    }
+
     public ServiceResponse<User> CreateUser(User user)
     {
-        _context.Add(user);
-        var result = _context.SaveChanges();
-        if (result > 0)
+        bool exist = _context.users.Any(u => u.DNI == user.DNI);
+        if (!exist)
         {
-            return new ServiceResponse<User>()
+            _context.Add(user);
+            var result = _context.SaveChanges();
+            if (result > 0)
             {
-                Success = true,
-                Data = user,
-                Message = "Usuarios creado correctamente"
-            };
+                return new ServiceResponse<User>()
+                {
+                    Success = true,
+                    Data = user,
+                    Message = "Usuarios creado correctamente"
+                };
+            }
         }
 
         return new ServiceResponse<User>()
         {
             Success = false,
             Data = null,
-            Message = "Usuario No creado"
+            Message = "DNI is already on data base"
+        };
+    }
+
+    public ServiceResponse<User> EditUser(int id)
+    {
+        var exists = _context.users.FirstOrDefault(u => u.Id == id);
+        if (exists != null)
+        {
+            return new ServiceResponse<User>()
+            {
+                Success = true,
+                Data = exists
+            };
+        }
+
+        return new ServiceResponse<User>()
+        {
+            Success = false,
+            Message = "User not found"
         };
     }
 
