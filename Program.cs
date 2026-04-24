@@ -7,8 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<MysqlDbcontext>(options => options.UseMySql(builder.Configuration.GetConnectionString("mysqlConntection"),
-    ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("mysqlConntection"))));
+builder.Services.AddDbContext<MysqlDbcontext>(options => options.UseMySql(
+    builder.Configuration.GetConnectionString("mysqlConntection"),
+    new MySqlServerVersion(new Version(8, 0, 36))));
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<BookService>();
 builder.Services.AddScoped<LoanService>();
