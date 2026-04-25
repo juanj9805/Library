@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JUAN JOSE\\Desktop\\Library\\library.csproj": {}
+    "C:\\Users\\JUAN JOSE\\Desktop\\M5_c-_actividad_4\\library.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JUAN JOSE\\Desktop\\Library\\library.csproj": {
+    "C:\\Users\\JUAN JOSE\\Desktop\\M5_c-_actividad_4\\library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JUAN JOSE\\Desktop\\Library\\library.csproj",
+        "projectUniqueName": "C:\\Users\\JUAN JOSE\\Desktop\\M5_c-_actividad_4\\library.csproj",
         "projectName": "library",
-        "projectPath": "C:\\Users\\JUAN JOSE\\Desktop\\Library\\library.csproj",
+        "projectPath": "C:\\Users\\JUAN JOSE\\Desktop\\M5_c-_actividad_4\\library.csproj",
         "packagesPath": "C:\\Users\\JUAN JOSE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JUAN JOSE\\Desktop\\Library\\obj\\",
+        "outputPath": "C:\\Users\\JUAN JOSE\\Desktop\\M5_c-_actividad_4\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\JUAN JOSE\\AppData\\Roaming\\NuGet\\NuGet.Config"
